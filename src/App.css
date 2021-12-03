@@ -1,1 +1,24 @@
+.App{
+  display: flex;
+  width: 100%;
+  border: 3px solid black;
+}
 
+.addButton{
+  background-color:blue;
+  color: white;
+  width: 15%;
+}
+
+.del{
+  background-color: white;
+  border: none;
+}
+
+.vertical-seperator{
+  border: 1px solid black;
+}
+
+.ticked{
+  text-decoration: line-through;
+}
