@@ -32,6 +32,21 @@ const initialState = {
     selectedListId: null
 }
 
+const taskUpdate = (state,logic) =>{
+    if(state.selectedListId){
+        const lists = [...state.lists]
+        const listIndex = lists.findIndex(list => list.id === state.selectedListId)
+        const list = lists[listIndex];
+        logic(list);
+        return {
+            ...state,
+            lists: lists
+        }
+    }else{
+        return state;
+    }
+}
+
 export const reducer = (state = initialState,action) =>{
     switch(action.type){
         case 'ADD_TO_LIST':{
@@ -53,19 +68,10 @@ export const reducer = (state = initialState,action) =>{
         }
         case 'ADD_TASK':{
             const task = new Task(action.taskName,action?.taskImg ?? null);
-            if(state.selectedListId){
-                const lists = [...state.lists]
-                const listIndex = lists.findIndex(list => list.id === state.selectedListId)
-                const list = lists[listIndex];
+            return taskUpdate(state,(list)=>{
                 const newTasks = [...list.tasks,task];
                 list.setTasks(newTasks);
-                return {
-                    ...state,
-                    lists: lists
-                }
-            }else{
-                return state;
-            }
+            })
         }
         case  'UPDATE_SELECTED_LIST_ID':{
             const newSelectedId = action.selectedListId;
@@ -75,49 +81,22 @@ export const reducer = (state = initialState,action) =>{
             } 
         }
         case 'CHANGE_TASK_STATUS':{
-            if(state.selectedListId){
-                const lists = [...state.lists]
-                const listIndex = lists.findIndex(list => list.id === state.selectedListId)
-                const list = lists[listIndex];
+            return taskUpdate(state,(list)=>{
                 const task = list.tasks.find(task => task.id === action.taskId);
                 task.markTask(!task.marked);
-                return {
-                    ...state,
-                    lists: lists
-                }
-            }else{
-                return state;
-            }
+            })
         }
         case 'CHANGE_TASK_NAME':{
-            if(state.selectedListId){
-                const lists = [...state.lists]
-                const listIndex = lists.findIndex(list => list.id === state.selectedListId)
-                const list = lists[listIndex];
+            return taskUpdate(state,(list)=>{
                 const task = list.tasks.find(task => task.id === action.taskId);
                 task.setName(action.taskName);
-                return {
-                    ...state,
-                    lists: lists
-                }
-            }else{
-                return state;
-            }
+            })
         }
         case 'REMOVE_TASK':{
-            if(state.selectedListId){
-                const lists = [...state.lists]
-                const listIndex = lists.findIndex(list => list.id === state.selectedListId)
-                const list = lists[listIndex];
+            return taskUpdate(state,(list)=>{
                 const newTasks = list.tasks.filter(task => task.id !== action.taskId);
                 list.setTasks(newTasks);
-                return {
-                    ...state,
-                    lists: lists
-                }
-            }else{
-                return state;
-            }
+            })
         }
         default: {
             return state;
