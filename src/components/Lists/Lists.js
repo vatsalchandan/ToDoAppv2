@@ -1,21 +1,22 @@
 import './Lists.css'
 import '../../App.css'
 import ListsList from './ListsList'
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { ADD_TO_LIST } from '../../app/actions'
 
 const Lists = () =>{
     const dispatch = useDispatch();
     const listInputRef = useRef();
 
-    const listFormSubmitHandler = (event) =>{
+    const listFormSubmitHandler = useCallback((event)=>{
         event.preventDefault();
         const listName = listInputRef.current.value;
-        dispatch({type: 'ADD_TO_LIST',listName: listName})
+        dispatch({type: ADD_TO_LIST,listName: listName})
         listInputRef.current.value = '';
-    }
+    },[])
 
-    const searchInputHandler = (event)=>{
+    const searchInputHandler = useCallback(()=>{
         var input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("searchInput");
         filter = input.value.toUpperCase();
@@ -30,7 +31,7 @@ const Lists = () =>{
                 li[i].style.display = "none";
             }
         }
-    }
+    },[])
     
     return(
         <section className="list-section">

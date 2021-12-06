@@ -1,14 +1,15 @@
 import './tasks.css'
 import '../../App.css'
 import TasksList from './TasksList';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { ADD_TASK } from '../../app/actions';
 
 const Tasks = () =>{
     const dispatch = useDispatch();
     const textRef = useRef();
     const imgRef = useRef();
-    const submitHandler = (event) =>{
+    const submitHandler = useCallback((event)=>{
         event.preventDefault();
         let taskName = textRef.current.value;
         const imgFile = imgRef.current.files;
@@ -16,19 +17,20 @@ const Tasks = () =>{
         if(taskName === '' && imgFile.length > 0){
             taskName = imgFile[0].name;
             img = imgFile[0];
-            dispatch({type: 'ADD_TASK',taskName:taskName,taskImg:img})
+            dispatch({type: ADD_TASK,taskName:taskName,taskImg:img})
             imgRef.current.value = '';
         }else if(taskName !== ''){
             if(imgFile.length > 0){
                 img = imgFile[0];
-                dispatch({type: 'ADD_TASK',taskName:taskName,taskImg:img})
+                dispatch({type: ADD_TASK,taskName:taskName,taskImg:img})
                 imgRef.current.value = '';
             }else{
-                dispatch({type: 'ADD_TASK',taskName:taskName})
+                dispatch({type: ADD_TASK,taskName:taskName})
             }
             textRef.current.value = '';
         }
-    }
+    },[])
+    
     return(
         <section className="task-section">
             <form onSubmit={submitHandler} className="task-input-form">
