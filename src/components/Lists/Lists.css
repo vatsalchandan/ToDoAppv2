@@ -6,6 +6,7 @@
 }
 
 .list-input-form{
+    min-height: 25px;
     height: 5%;
     display: flex;
     flex-direction: row;
