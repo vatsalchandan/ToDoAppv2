@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <Lists/>
-      <div className="vertical-seperator"></div>
       <Tasks/>
     </div>
   );
