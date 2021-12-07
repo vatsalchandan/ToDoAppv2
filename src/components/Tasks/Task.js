@@ -7,13 +7,13 @@ const Task = (props) =>{
     const dispatch = useDispatch();
     const checkboxClickHandler = useCallback(()=>{
         dispatch({type: CHANGE_TASK_STATUS,taskId: props.task.id})
-    },[props.task.id])
+    },[dispatch, props.task.id])
 
     const changeLabelNameHandler = useCallback((event)=>{
         event.preventDefault();
         const taskName = labelRef.current.innerText;
         dispatch({type: CHANGE_TASK_NAME,taskId: props.task.id,taskName: taskName})
-    },[props.task.id])
+    },[dispatch, props.task.id])
 
     const labelClickHandler = useCallback((event)=>{
         event.preventDefault();
@@ -21,7 +21,7 @@ const Task = (props) =>{
     
     const deleteButtonClickHandler = useCallback(()=>{
         dispatch({type: REMOVE_TASK,taskId: props.task.id})
-    },[props.task.id])
+    },[dispatch, props.task.id])
 
     return(
         <li>

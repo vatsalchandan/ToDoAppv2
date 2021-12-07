@@ -9,13 +9,13 @@ const List = (props) =>{
     const selectedListId = useSelector((state)=>state.selectedListId);
     const deleteHandler = useCallback(()=>{
         dispatch({type: REMOVE_FROM_LIST,id: props.list.id})
-    },[props.list.id])
+    },[dispatch, props.list.id])
 
     const listClickHandler = useCallback((event)=>{
         if(event.target.className !== "material-icons del"){
             dispatch({type: UPDATE_SELECTED_LIST_ID,selectedListId:props.list.id})
         }
-    },[props.list.id])
+    },[dispatch, props.list.id])
     
     return(
         <li className={'list' + (props.list.id === selectedListId ? ' selected': '')} ref={listRef} onClick={listClickHandler}>
