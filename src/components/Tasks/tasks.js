@@ -29,7 +29,7 @@ const Tasks = () =>{
             }
             textRef.current.value = '';
         }
-    },[])
+    },[dispatch])
     
     return(
         <section className="task-section">

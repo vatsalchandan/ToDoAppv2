@@ -14,7 +14,7 @@ const Lists = () =>{
         const listName = listInputRef.current.value;
         dispatch({type: ADD_TO_LIST,listName: listName})
         listInputRef.current.value = '';
-    },[])
+    },[dispatch])
 
     const searchInputHandler = useCallback(()=>{
         var input, filter, ul, li, a, i, txtValue;
