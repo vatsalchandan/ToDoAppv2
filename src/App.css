@@ -7,12 +7,16 @@
 .addButton{
   background-color:blue;
   color: white;
-  width: 15%;
+  width: 20%;
+  padding: 0;
+  height: 100%;
+  border: none;
 }
 
 .del{
   background-color: white;
   border: none;
+  padding: 0;
 }
 
 .vertical-seperator{
@@ -21,4 +25,12 @@
 
 .ticked{
   text-decoration: line-through;
+}
+
+.selected{
+  background-color: lightgray;
+}
+
+.selected button{
+  background-color: lightgray;
 }

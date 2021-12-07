@@ -35,8 +35,10 @@ const Lists = () =>{
     
     return(
         <section className="list-section">
-            <input type="text" id="searchInput" placeholder="search" onKeyUp={searchInputHandler} />
-            <ListsList/>
+            <div className="search-list-container">
+                <input type="text" id="searchInput" placeholder="Search List" onKeyUp={searchInputHandler} />
+                <ListsList/>
+            </div>
             <form onSubmit={listFormSubmitHandler} className="list-input-form">
                 <input ref={listInputRef} className="list-input" id="list-input" type="text" placeholder="Add List" />
                 <button className="addButton" type="submit">Add</button>

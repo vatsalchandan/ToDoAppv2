@@ -1,12 +1,12 @@
 .list-section{
-    width: 35%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 5px;
 }
 
 .list-input-form{
+    height: 5%;
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -16,6 +16,11 @@
 
 #list-input{
     width: 100%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    height: 100%;
+    padding: 0;
 }
 
 #lists-list{
@@ -24,11 +29,28 @@
 }
 
 #lists-list li{
-    margin: 2px 0;
+    margin: 5px 0;
     list-style: none;
-    border: 1px solid black;
-    padding: 2px 5px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+#lists-list li:hover{
+    background-color:lightgray
+}
+
+.search-list-container{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#searchInput{
+    min-height: 28px;
+    border-width: 0 0 1px 0;
+    border-color: black;
+    border-style: solid;
 }
